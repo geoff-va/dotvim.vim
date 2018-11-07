@@ -91,7 +91,7 @@ let g:LatexBox_latexmk_async=1
 let g:LatexBox_latexmk_preview_continuously=1
 
 autocmd Filetype tex,html,javascript setlocal ts=2 sw=2 sts=2 et
+set lazyredraw
 set backspace=2
-
 set vb t_vb=
 
