@@ -9,10 +9,10 @@ fi
 # Colors
 if [ ! -d ~/.vim/colors ]; then
 	mkdir -p ~/.vim/colors
-	echo "Created ~/.vim/colors"
+	echo "Created ~/.vim/colors/"
 fi
-cp -r darcula.vim ~/.vim/colors/
-echo "Copied darcular.vim to ~/.vim/colors"
+cp darcula.vim ~/.vim/colors/
+echo "Copied darcular.vim to ~/.vim/colors/"
 
 # vimrc
 cp .vimrc ~/.vimrc
