@@ -18,11 +18,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'dkprice/vim-easygrep'
-"Plugin 'davidhalter/jedi-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mtth/scratch.vim'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'easymotion/vim-easymotion'
+"Plugin 'LaTeX-Box-Team/LaTeX-Box'
+"Plugin 'easymotion/vim-easymotion'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,6 +36,7 @@ nmap <leader>ee :NERDTreeToggle<CR>  " Toggle Nerd Tree
 let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc', '\.idea$', '\.aux', '\.fls', '\.fdb_']
 set nospell
 set cursorline
+set cursorcolumn
 set number
 set nopaste
 set undofile
@@ -47,7 +47,7 @@ let g:AutoClosePumvisible = {"ENTER": "", "ESC": ""}
 " Airline Settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 
 " Buffer Navigation
 nnoremap <S-t> :enew<cr>
@@ -70,9 +70,6 @@ set expandtab
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" jedi-vim settings
-let g:jedi#documentation_command = "D"
-
 nmap <leader>re :! /edx/bin/supervisorctl restart edxapp:<cr>
 nmap <leader>rew :! /edx/bin/supervisorctl restart edxapp:cms<cr>
 
@@ -81,7 +78,6 @@ nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
-set gdefault
 set incsearch
 set showmatch
 set hlsearch

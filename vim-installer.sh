@@ -1,15 +1,24 @@
 #!/bin/bash
 
+# .vim directory
 if [ ! -d ~/.vim ]; then
 	mkdir -p ~/.vim
 	echo "Created ~/.vim/"
 fi
-cp -r colors ~/.vim/
-echo "Copied colors dir to ~/.vim/colors"
+
+# Colors
+if [ ! -d ~/.vim/colors ]; then
+	mkdir -p ~/.vim/colors
+	echo "Created ~/.vim/colors"
+fi
+cp -r darcula.vim ~/.vim/colors/
+echo "Copied darcular.vim to ~/.vim/colors"
+
+# vimrc
 cp .vimrc ~/.vimrc
 echo "Copied .vimrc to ~/.vimrc"
 
-# Optionally install vundle
+# Install Vundle
 if [ -d ~/.vim/bundle ]; then
     echo "~/.vim/bundle already exists ... not intalling"
     vim +BundleInstall +q
