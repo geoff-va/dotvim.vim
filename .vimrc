@@ -9,6 +9,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ervandew/supertab'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'Townk/vim-autoclose'
 Plugin 'vim-airline/vim-airline'
 Plugin 'majutsushi/tagbar'
@@ -18,10 +19,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'dkprice/vim-easygrep'
+Plugin 'davidhalter/jedi-vim'
+" Plugin 'derekwyatt/vim-scala'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mtth/scratch.vim'
-"Plugin 'LaTeX-Box-Team/LaTeX-Box'
-"Plugin 'easymotion/vim-easymotion'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -33,21 +34,17 @@ colorscheme darcula
 syntax on
 nmap <leader>tt :TagbarToggle<CR>  " Toggle Tag Bar
 nmap <leader>ee :NERDTreeToggle<CR>  " Toggle Nerd Tree
-let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc', '\.idea$', '\.aux', '\.fls', '\.fdb_']
+let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc', '\.idea$']
 set nospell
-set cursorline
-set cursorcolumn
 set number
-set nopaste
+set cursorline
 set undofile
 command W w
-
-let g:AutoClosePumvisible = {"ENTER": "", "ESC": ""}
+map <leader>re :!sudo /edx/bin/supervisorctl restart edxapp:<cr>
 
 " Airline Settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline_powerline_fonts = 1
 
 " Buffer Navigation
 nnoremap <S-t> :enew<cr>
@@ -62,22 +59,29 @@ set scrolljump=1
 set colorcolumn=80
 
 " Tabs
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
 
+"syntastic config
+set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_python_flake8_post_args='--ignore=E501,W291'
 
-nmap <leader>re :! /edx/bin/supervisorctl restart edxapp:<cr>
-nmap <leader>rew :! /edx/bin/supervisorctl restart edxapp:cms<cr>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-l> :wincmd l<CR>
+" jedi-vim settings
+let g:jedi#documentation_command = "D"
 
+" use normal regex
+nnoremap / /\v
+vnoremap / /\v
+
+set gdefault   " default global replace on line
 set incsearch
 set showmatch
 set hlsearch
@@ -87,11 +91,8 @@ vnoremap <tab> %
 nnoremap j gj
 nnoremap k gk
 
-let g:LatexBox_latexmk_async=1
-let g:LatexBox_latexmk_preview_continuously=1
-
-autocmd Filetype tex,html,javascript setlocal ts=2 sw=2 sts=2 et
-set lazyredraw
-set backspace=2
-set vb t_vb=
-
+" Window navidation
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>
