@@ -1,0 +1,50 @@
+filetype plugin indent on    " required
+
+"My Settings
+let mapleader = ','
+colorscheme darcula
+syntax on
+set nospell
+set number
+set cursorline
+set undofile
+command W w
+map <leader>re :!sudo /edx/bin/supervisorctl restart edxapp:<cr>
+
+" Buffer Navigation
+nnoremap <S-t> :enew<cr>
+nnoremap <S-k> :bnext<cr>
+nnoremap <S-j> :bprevious<cr>
+nnoremap <leader>bq :bp <BAR> bd #<cr>
+nnoremap <leader>bs :ls<cr>
+
+" Cursor position/setup
+set scrolloff=999
+set scrolljump=1
+set colorcolumn=80
+
+" Tabs
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+" use normal regex
+nnoremap / /\v
+vnoremap / /\v
+
+set gdefault   " default global replace on line
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
+nnoremap j gj
+nnoremap k gk
+
+" Window navidation
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>

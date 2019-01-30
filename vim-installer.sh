@@ -20,21 +20,28 @@ cp $TMP_DIR/colors/darcula.vim ~/.vim/colors/
 echo "Copied darcular.vim to ~/.vim/colors/"
 rm -r $TMP_DIR
 
-# vimrc
-cp .vimrc ~/.vimrc
-echo "Copied .vimrc to ~/.vimrc"
+# vimrc and vundle
+if [[ "$1" == "plugins" ]]; then
+    cp .vimrc ~/.vimrc
+    echo "Copied .vimrc to ~/.vimrc"
 
-# Install Vundle
-if [ -d ~/.vim/bundle ]; then
-    echo "~/.vim/bundle already exists ... not intalling"
-    vim +BundleInstall +q
-fi
+    # Install Vundle
+    if [ -d ~/.vim/bundle ]; then
+        echo "~/.vim/bundle already exists ... not intalling"
+        vim +BundleInstall +q
+    fi
 
-if [ ! -d ~/.vim/bundle ]; then
-    echo "No bundle dir exists at ~/.vim/bundle, installing vundle..."
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &&
-    vim -c BundleInstall! -c quitall!
+    if [ ! -d ~/.vim/bundle ]; then
+        echo "No bundle dir exists at ~/.vim/bundle, installing vundle..."
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &&
+        vim -c BundleInstall! -c quitall!
+    fi
+else
+    cp .vimrc_no_plugins ~/.vimrc
+    echo "Copied .vimrc_no_plugins to ~/.vimrc"
 fi
+echo "-DONE-"
+
 
 
 
