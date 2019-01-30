@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TMP_DIR="/tmp/darcula_vim"
+
 # .vim directory
 if [ ! -d ~/.vim ]; then
 	mkdir -p ~/.vim
@@ -11,8 +13,12 @@ if [ ! -d ~/.vim/colors ]; then
 	mkdir -p ~/.vim/colors
 	echo "Created ~/.vim/colors/"
 fi
-cp darcula.vim ~/.vim/colors/
+
+echo "Cloning Blueshirts/darcula to $TMP_DIR"
+git clone https://github.com/blueshirts/darcula.git $TMP_DIR
+cp $TMP_DIR/colors/darcula.vim ~/.vim/colors/
 echo "Copied darcular.vim to ~/.vim/colors/"
+rm -r $TMP_DIR
 
 # vimrc
 cp .vimrc ~/.vimrc
